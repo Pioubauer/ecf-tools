@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECF NOD · Meet the Team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #028090;
+    --teal-dark: #016070;
+    --teal-light: #e0f4f7;
+    --purple: #6B3FA0;
+    --purple-light: #f0e9f9;
+    --orange: #E87722;
+    --orange-light: #fdf0e4;
+    --gold: #F5A623;
+    --dark: #1A2E35;
+    --mid: #4A6572;
+    --light: #f4f7f8;
+    --white: #ffffff;
+    --card-shadow: 0 4px 24px rgba(2,128,144,0.10);
+    --card-shadow-hover: 0 8px 40px rgba(2,128,144,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--teal-dark);
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: 120px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(107,63,160,0.25);
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .ecf-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .header h1 em {
+    font-style: italic;
+    color: rgba(197,232,237,0.9);
+  }
+  .header-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .header-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .main { max-width: 1100px; margin: 0 auto; padding: 40px; }
+
+  /* ── INTRO TEXT ── */
+  .intro {
+    margin-bottom: 40px;
+  }
+  .intro-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .intro h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .intro p {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.65;
+    max-width: 620px;
+  }
+
+  /* ── CATEGORY FILTERS ── */
+  .filter-section { margin-bottom: 40px; }
+  .filter-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 14px;
+  }
+  .filter-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: 1.5px solid #d0dde0;
+    background: var(--white);
+    color: var(--mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  .filter-btn .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+  }
+  .filter-btn:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: var(--teal-light);
+  }
+  .filter-btn.active {
+    border-color: transparent;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .filter-btn.active .dot { opacity: 1; background: rgba(255,255,255,0.7); }
+
+  .filter-btn[data-cat="strategy"].active { background: var(--teal); }
+  .filter-btn[data-cat="org"].active { background: #2d7a3e; }
+  .filter-btn[data-cat="leadership"].active { background: var(--purple); }
+  .filter-btn[data-cat="programming"].active { background: #1a6ea8; }
+  .filter-btn[data-cat="advocacy"].active { background: #c0392b; }
+  .filter-btn[data-cat="people"].active { background: var(--orange); }
+  .filter-btn[data-cat="operations"].active { background: #5d4a8a; }
+  .filter-btn[data-cat="financial"].active { background: var(--gold); color: var(--dark) !important; }
+  .filter-btn[data-cat="external"].active { background: #2e7d6e; }
+  .filter-btn[data-cat="coaching"].active { background: #c0392b; }
+
+  .filter-btn[data-cat="financial"].active .dot { background: rgba(26,46,53,0.5); }
+
+  .clear-btn {
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: 1.5px dashed #c0cdd0;
+    background: transparent;
+    color: var(--mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: none;
+  }
+  .clear-btn.visible { display: block; }
+  .clear-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ── RESULTS HINT ── */
+  .results-hint {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--mid);
+    min-height: 22px;
+    transition: opacity 0.3s;
+  }
+  .results-hint strong { color: var(--teal); }
+
+  /* ── TEAM GRID ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  /* ── CONSULTANT CARD ── */
+  .consultant-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1.5px solid #e0eaec;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--card-shadow);
+    position: relative;
+  }
+  .consultant-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow-hover);
+    border-color: transparent;
+  }
+  .consultant-card.dimmed {
+    opacity: 0.25;
+    transform: none;
+    box-shadow: none;
+    pointer-events: none;
+  }
+  .consultant-card.matched {
+    border-color: transparent;
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .card-accent {
+    height: 5px;
+    width: 100%;
+  }
+  .card-body { padding: 22px; }
+  .card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+  .avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+  }
+  .card-info { flex: 1; min-width: 0; }
+  .card-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--dark);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-role {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .card-location {
+    font-size: 11px;
+    color: var(--mid);
+  }
+
+  .card-tagline {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #eef2f3;
+  }
+
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 5px;
+    letter-spacing: 0.2px;
+  }
+
+  .card-langs {
+    font-size: 11px;
+    color: var(--mid);
+  }
+  .card-langs span { font-weight: 600; color: var(--dark); }
+
+  .card-cta {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #eef2f3;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .card-cta::after { content: '→'; transition: transform 0.2s; }
+  .consultant-card:hover .card-cta::after { transform: translateX(3px); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,46,53,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .modal {
+    background: var(--white);
+    border-radius: 20px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.3s ease;
+    position: relative;
+  }
+  .modal-overlay.open .modal {
+    transform: translateY(0) scale(1);
+  }
+  .modal-header {
+    padding: 0;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+  }
+  .modal-banner {
+    height: 8px;
+    width: 100%;
+  }
+  .modal-top {
+    padding: 28px 28px 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .modal-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .modal-info { flex: 1; }
+  .modal-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .modal-role {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .modal-location-lang {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #eef2f3;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--mid);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover { background: var(--dark); color: var(--white); }
+
+  .modal-body { padding: 0 28px 28px; }
+
+  .modal-tagline {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--mid);
+    line-height: 1.65;
+    padding: 16px 20px;
+    background: var(--light);
+    border-radius: 10px;
+    border-left: 3px solid var(--teal);
+    margin-bottom: 24px;
+  }
+
+  .modal-section-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 10px;
+  }
+
+  .modal-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .modal-tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+  }
+
+  .modal-bio {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .modal-highlights { list-style: none; margin-bottom: 24px; }
+  .modal-highlights li {
+    display: flex;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--dark);
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f4f5;
+  }
+  .modal-highlights li:last-child { border-bottom: none; }
+  .highlight-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .modal-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+  .modal-cat {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: var(--light);
+    color: var(--mid);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 60px;
+    padding: 32px 40px;
+    background: var(--dark);
+    text-align: center;
+  }
+  .footer p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+  }
+  .footer a {
+    color: rgba(197,232,237,0.7);
+    text-decoration: none;
+  }
+  .footer a:hover { color: var(--teal); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .consultant-card {
+    animation: fadeIn 0.4s ease both;
+  }
+  .consultant-card:nth-child(2) { animation-delay: 0.05s; }
+  .consultant-card:nth-child(3) { animation-delay: 0.10s; }
+  .consultant-card:nth-child(4) { animation-delay: 0.15s; }
+  .consultant-card:nth-child(5) { animation-delay: 0.20s; }
+  .consultant-card:nth-child(6) { animation-delay: 0.25s; }
+  .consultant-card:nth-child(7) { animation-delay: 0.30s; }
+
+  @media (max-width: 640px) {
+    .header { padding: 32px 20px 28px; }
+    .main { padding: 24px 20px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .modal-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="ecf-label">European Climate Foundation · NOD Programme</div>
+    <h1>Your <em>organisational development</em><br>support team</h1>
+    <p class="header-sub">We're here to help your organisation grow stronger — at no cost to you. Browse by the areas you care about most to meet the right people.</p>
+    <div class="header-badges">
+      <span class="badge">✓ Fully funded</span>
+      <span class="badge">✓ Grantee-led</span>
+      <span class="badge">✓ Expert support</span>
+      <span class="badge">✓ Tailored to your needs</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="intro">
+    <div class="intro-label">Explore by area</div>
+    <h2>What does your organisation need right now?</h2>
+    <p>Select one or more areas below to see which team members have the right expertise for you.</p>
+  </div>
+
+  <!-- FILTER BUTTONS -->
+  <div class="filter-section">
+    <div class="filter-title">OD Categories</div>
+    <div class="filter-grid" id="filterGrid">
+      <button class="filter-btn" data-cat="strategy">
+        <span class="dot"></span> Strategy &amp; Governance
+      </button>
+      <button class="filter-btn" data-cat="org">
+        <span class="dot"></span> Organisation &amp; Culture
+      </button>
+      <button class="filter-btn" data-cat="leadership">
+        <span class="dot"></span> Leadership
+      </button>
+      <button class="filter-btn" data-cat="programming">
+        <span class="dot"></span> Programming &amp; Learning
+      </button>
+      <button class="filter-btn" data-cat="advocacy">
+        <span class="dot"></span> Advocacy &amp; Communications
+      </button>
+      <button class="filter-btn" data-cat="people">
+        <span class="dot"></span> People Management
+      </button>
+      <button class="filter-btn" data-cat="operations">
+        <span class="dot"></span> Operating Functions
+      </button>
+      <button class="filter-btn" data-cat="financial">
+        <span class="dot"></span> Financial Health &amp; Funding
+      </button>
+      <button class="filter-btn" data-cat="external">
+        <span class="dot"></span> External Environment
+      </button>
+      <button class="filter-btn" data-cat="coaching">
+        <span class="dot"></span> Coaching &amp; Wellbeing
+      </button>
+      <button class="clear-btn" id="clearBtn">✕ Clear filters</button>
+    </div>
+  </div>
+
+  <!-- RESULTS HINT -->
+  <div class="results-hint" id="resultsHint"></div>
+
+  <!-- TEAM GRID -->
+  <div class="team-grid" id="teamGrid"></div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>ECF Network &amp; Organisational Development · <a href="mailto:nod@europeanclimate.org">nod@europeanclimate.org</a> · <a href="https://europeanclimate.org" target="_blank">europeanclimate.org</a></p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-header">
+      <div class="modal-banner" id="modalBanner"></div>
+      <div class="modal-top">
+        <div class="modal-avatar" id="modalAvatar"></div>
+        <div class="modal-info">
+          <div class="modal-name" id="modalName"></div>
+          <div class="modal-role" id="modalRole"></div>
+          <div class="modal-location-lang" id="modalLocationLang"></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tagline" id="modalTagline"></div>
+      <div class="modal-section-title">Areas of Expertise</div>
+      <div class="modal-tags" id="modalTags"></div>
+      <div class="modal-section-title">About</div>
+      <div class="modal-bio" id="modalBio"></div>
+      <div class="modal-section-title">Career Highlights</div>
+      <ul class="modal-highlights" id="modalHighlights"></ul>
+      <div class="modal-section-title">OD Categories Covered</div>
+      <div class="modal-cats" id="modalCats"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const catLabels = {
+  strategy: "Strategy & Governance",
+  org: "Organisation & Culture",
+  leadership: "Leadership",
+  programming: "Programming & Learning",
+  advocacy: "Advocacy & Comms",
+  people: "People Management",
+  operations: "Operating Functions",
+  financial: "Financial Health & Funding",
+  external: "External Environment",
+  coaching: "Coaching & Wellbeing"
+};
+
+const catColors = {
+  strategy: "#028090",
+  org: "#2d7a3e",
+  leadership: "#6B3FA0",
+  programming: "#1a6ea8",
+  advocacy: "#c0392b",
+  people: "#E87722",
+  operations: "#5d4a8a",
+  financial: "#c8860a",
+  external: "#2e7d6e",
+  coaching: "#c0392b"
+};
+
+const consultants = [
+  {
+    id: "mathieu",
+    name: "Mathieu Dufour",
+    initials: "MD",
+    role: "OD Practitioner & Executive Coach",
+    location: "Bergamo, Italy",
+    languages: "French · English · Spanish · Italian · Portuguese",
+    color: "#028090",
+    tagline: "Creating clarity and space for change — for teams and the people who lead them",
+    bio: "Mathieu is a humanitarian operative turned coach and OD practitioner. With over a decade leading high-performance teams in extreme field conditions across 40 countries, he brings a deeply human approach to organisational development. Accredited as a Senior Practitioner by EMCC and an Associate Certified Coach with ICF, he has coached 70+ people across 20 countries in 4 languages. He is also the author of Vertigo — a biweekly newsletter on navigating the great accelerations of our time.",
+    expertise: ["Coaching & Emotional Intelligence", "Change Management", "Financial Leadership", "OD Practice", "Climate & Complexity"],
+    highlights: [
+      "EMCC Senior Practitioner (EIA) · ICF Associate Certified Coach",
+      "Former Director of Finance at MSF OCBA — €200M budget, 6,000+ staff",
+      "Coached 70+ people across 20 countries in 4 languages",
+      "OD Practitioner at ECF since Nov 2024",
+      "Author of Vertigo newsletter · 350+ subscribers"
+    ],
+    cats: ["strategy", "leadership", "financial", "coaching", "org"]
+  },
+  {
+    id: "javier",
+    name: "Javier Martinez",
+    initials: "JM",
+    role: "Director, Organisational Development",
+    location: "Madrid, Spain",
+    languages: "Spanish · English · French",
+    color: "#028090",
+    tagline: "Strategic leadership for systemic organisational change",
+    bio: "Javier leads the ECF NOD team with over 20 years of experience across humanitarian, UN, and civil society contexts. He brings a rare combination of strategic depth, financial oversight, and hands-on field leadership. He spent three years as Director of Global Digital Learning & Development at MSF, served on MSF's Board of Directors overseeing a €200M budget, and was a UN Political Officer verifying Colombia's Peace Agreement.",
+    expertise: ["OD Strategy & Governance", "Digital Learning & Development", "Peace & Conflict Management", "Financial Oversight & Risk", "Programme Management"],
+    highlights: [
+      "Director OD at ECF since January 2024",
+      "Director of Global Digital L&D at MSF (3 years)",
+      "UN Political Officer, Colombia Peace Agreement verification",
+      "MSF Board of Directors — oversaw €200M annual budget, 7,800 staff",
+      "20+ years across humanitarian & civil society sectors"
+    ],
+    cats: ["strategy", "leadership", "programming", "financial", "operations", "org"]
+  },
+  {
+    id: "jaume",
+    name: "Jaume Rado",
+    initials: "JR",
+    role: "OD Service Manager & Strategy Consultant",
+    location: "Mallorca, Spain",
+    languages: "Spanish · English",
+    color: "#6B3FA0",
+    tagline: "Transformational leadership built in complex, high-stakes environments",
+    bio: "Jaume is a transformational leader and OD expert with a decade as MSF Country Director in some of the world's most complex contexts — Yemen, South Sudan, CAR, Colombia. He holds a Master in International Conflict & Security from the University of Kent and a Master in Finance from EADA. He now leads strategic OD interventions at ECF, specialising in strategy, governance, and negotiation.",
+    expertise: ["Strategy & Governance", "Organisational Design", "Access & Risk Management", "Negotiation & Conflict", "Scenario Building"],
+    highlights: [
+      "OD Service Manager at ECF since August 2024",
+      "Founder & CEO of In-Proximity consultancy",
+      "MSF Country Director in Yemen, South Sudan, CAR, Colombia",
+      "Strategic Planning Coordinator & Facilitator at MSF HQ",
+      "Master in International Conflict & Security, University of Kent"
+    ],
+    cats: ["strategy", "org", "leadership", "operations", "external"]
+  },
+  {
+    id: "juan",
+    name: "Juan Goyanes Valero",
+    initials: "JG",
+    role: "Business Analyst & OD Consultant",
+    location: "Madrid, Spain",
+    languages: "Spanish · English · Portuguese",
+    color: "#E87722",
+    tagline: "Data-driven risk intelligence for resilient organisations",
+    bio: "Juan is a risk management specialist with deep expertise supporting NGOs, human rights defenders, and humanitarian teams in complex environments. He combines strategic planning, GIS mapping, and data analysis to turn complex information into clear, actionable insights. His 20+ year career spans MSF, Action Against Hunger, Greenpeace International, and now ECF.",
+    expertise: ["Security & Risk Management", "Data Analysis & GIS", "Organisational Resilience", "Capacity Building", "Logistics & Operations"],
+    highlights: [
+      "Business Analyst & OD at ECF since May 2024",
+      "Security Risk Consultant at Open Briefing (ongoing)",
+      "Former Security Risk Management Advisor at Greenpeace International",
+      "Global Head of Logistics & Security, Action Against Hunger (4 years)",
+      "6 years with MSF across India, East Africa & Ethiopia"
+    ],
+    cats: ["operations", "strategy", "external", "programming", "org"]
+  },
+  {
+    id: "sanda",
+    name: "Sanda Flegar",
+    initials: "SF",
+    role: "OD Consultant — HR & Operations",
+    location: "Istria, Croatia",
+    languages: "English · French · Croatian · Serbian",
+    color: "#028090",
+    tagline: "Building human systems that empower teams and drive lasting change",
+    bio: "Sanda is an HR and operations specialist with over 20 years of experience across MSF, UNDP, Save the Children, and Mercy Corps. She founded her own consultancy, EARTH BASED, and has been a Ways of Working Training Facilitator at MSF for over four years, helping managers become better leaders. Her background in peace studies and conflict resolution shapes a deeply human approach to HR design.",
+    expertise: ["HR Strategy & Systems", "Leadership Development", "Project Management (PRINCE2)", "Conflict Resolution", "Capacity Building"],
+    highlights: [
+      "OD Consultant at ECF since October 2025",
+      "Founder of EARTH BASED consultancy (2022–present)",
+      "Ways of Working Training Facilitator, MSF (4+ years, ongoing)",
+      "HR & Operations lead, Health in Harmony (3 years)",
+      "MSF HR Manager — South Sudan, Sudan, Ethiopia missions (5 years)"
+    ],
+    cats: ["people", "org", "leadership", "operations", "programming"]
+  },
+  {
+    id: "helea",
+    name: "Helea Sáiz Bermejo",
+    initials: "HS",
+    role: "OD & Wellbeing Consultant",
+    location: "Madrid, Spain",
+    languages: "Spanish · English · French · Portuguese · Italian",
+    color: "#6B3FA0",
+    tagline: "Integrating equity, care, and organisational health into everyday practice",
+    bio: "Helea works at the intersection of organisational development, wellbeing, and humanitarian leadership. With 17+ years leading emergency programmes worldwide (MSF, Médicos del Mundo), she now focuses on helping organisations build cultures of equity and sustainable engagement. She is a Lecturer in Humanitarian Health Action at Universidad de Alcalá and holds advanced training in coaching, systemic therapy, and mediation.",
+    expertise: ["Leadership & Culture", "Wellbeing & Resilience", "Gender & Protection", "Humanitarian Programme Design", "Coaching & Facilitation"],
+    highlights: [
+      "OD Consultant at ECF since October 2025",
+      "Independent Consultant & Facilitator since 2023",
+      "Head of Emergency Unit, Médicos del Mundo — €5M portfolio, 7 years",
+      "Lecturer in Humanitarian Health Action, Universidad de Alcalá",
+      "Advanced training in coaching, systemic therapy, and mediation"
+    ],
+    cats: ["people", "org", "leadership", "coaching", "advocacy", "programming"]
+  },
+  {
+    id: "thomas",
+    name: "Thomas Chamberlin",
+    initials: "TC",
+    role: "Senior Project & Insights Associate",
+    location: "Brussels, Belgium",
+    languages: "English · French · Spanish",
+    color: "#E87722",
+    tagline: "Climate intelligence and evidence-based insight for stronger organisations",
+    bio: "Thomas brings a rare combination of climate policy knowledge, project management rigor, and research expertise to the ECF team. A PMP-certified practitioner with a Master in International Environmental Policy from MIIS Monterey, he has spent 6 years at ECF building institutional intelligence and supporting strategic projects across the European climate ecosystem.",
+    expertise: ["Project Management (PMP)", "Climate Policy & Strategy", "Research & Intelligence", "Environmental Planning", "GIS & Data Analysis"],
+    highlights: [
+      "Senior Project & Insights Associate at ECF since 2022 (6 years total)",
+      "Global Intelligence Associate at ClimateWorks Foundation (2.5 years)",
+      "PMP certified · DPMI certified",
+      "Master in International Environmental Policy, MIIS Monterey",
+      "Master 1 in Urban Studies & Regional Planning, Aix-Marseille Université"
+    ],
+    cats: ["strategy", "programming", "external", "operations", "advocacy"]
+  }
+];
+
+// ── STATE ──────────────────────────────────────────────────────────────────────
+let activeFilters = new Set();
+let currentConsultant = null;
+
+// ── RENDER CARDS ──────────────────────────────────────────────────────────────
+function renderCards() {
+  const grid = document.getElementById('teamGrid');
+  grid.innerHTML = '';
+
+  consultants.forEach((c, i) => {
+    const card = document.createElement('div');
+    card.className = 'consultant-card';
+    card.style.animationDelay = `${i * 0.06}s`;
+    card.dataset.id = c.id;
+
+    const isMatched = activeFilters.size === 0 || c.cats.some(cat => activeFilters.has(cat));
+    if (activeFilters.size > 0 && !isMatched) card.classList.add('dimmed');
+    if (activeFilters.size > 0 && isMatched) card.classList.add('matched');
+
+    const tagBg = c.color + '18';
+    const tagColor = c.color;
+
+    card.innerHTML = `
+      <div class="card-accent" style="background: ${c.color}"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="avatar" style="background: ${c.color}">${c.initials}</div>
+          <div class="card-info">
+            <div class="card-name">${c.name}</div>
+            <div class="card-role" style="color: ${c.color}">${c.role}</div>
+            <div class="card-location">📍 ${c.location}</div>
+          </div>
+        </div>
+        <div class="card-tagline">${c.tagline}</div>
+        <div class="card-tags">
+          ${c.expertise.slice(0, 3).map(e =>
+            `<span class="tag" style="background:${tagBg}; color:${tagColor}">${e}</span>`
+          ).join('')}
+        </div>
+        <div class="card-langs">🌐 <span>${c.languages}</span></div>
+        <div class="card-cta">View full profile</div>
+      </div>
+    `;
+
+    card.addEventListener('click', () => openModal(c));
+    grid.appendChild(card);
+  });
+
+  updateHint();
+}
+
+function updateHint() {
+  const hint = document.getElementById('resultsHint');
+  if (activeFilters.size === 0) {
+    hint.innerHTML = `Showing all <strong>${consultants.length} team members</strong> — select a category above to filter`;
+    return;
+  }
+  const matched = consultants.filter(c => c.cats.some(cat => activeFilters.has(cat)));
+  const catList = Array.from(activeFilters).map(f => `<strong>${catLabels[f]}</strong>`).join(' + ');
+  hint.innerHTML = `<strong>${matched.length} team member${matched.length !== 1 ? 's' : ''}</strong> cover ${catList}`;
+}
+
+// ── FILTERS ────────────────────────────────────────────────────────────────────
+document.getElementById('filterGrid').addEventListener('click', (e) => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  const cat = btn.dataset.cat;
+  if (!cat) return;
+
+  if (activeFilters.has(cat)) {
+    activeFilters.delete(cat);
+    btn.classList.remove('active');
+  } else {
+    activeFilters.add(cat);
+    btn.classList.add('active');
+  }
+
+  document.getElementById('clearBtn').classList.toggle('visible', activeFilters.size > 0);
+  renderCards();
+});
+
+document.getElementById('clearBtn').addEventListener('click', () => {
+  activeFilters.clear();
+  document.querySelectorAll('.filter-btn.active').forEach(b => b.classList.remove('active'));
+  document.getElementById('clearBtn').classList.remove('visible');
+  renderCards();
+});
+
+// ── MODAL ──────────────────────────────────────────────────────────────────────
+function openModal(c) {
+  currentConsultant = c;
+  document.getElementById('modalBanner').style.background = c.color;
+  document.getElementById('modalAvatar').style.background = c.color;
+  document.getElementById('modalAvatar').textContent = c.initials;
+  document.getElementById('modalName').textContent = c.name;
+  document.getElementById('modalRole').style.color = c.color;
+  document.getElementById('modalRole').textContent = c.role;
+  document.getElementById('modalLocationLang').innerHTML = `📍 ${c.location}<br>🌐 ${c.languages}`;
+  document.getElementById('modalTagline').textContent = `"${c.tagline}"`;
+
+  const tagBg = c.color + '18';
+  document.getElementById('modalTags').innerHTML = c.expertise.map(e =>
+    `<span class="modal-tag" style="background:${tagBg}; color:${c.color}">${e}</span>`
+  ).join('');
+
+  document.getElementById('modalBio').textContent = c.bio;
+
+  document.getElementById('modalHighlights').innerHTML = c.highlights.map(h =>
+    `<li><span class="highlight-dot" style="background:${c.color}"></span>${h}</li>`
+  ).join('');
+
+  document.getElementById('modalCats').innerHTML = c.cats.map(cat =>
+    `<span class="modal-cat" style="border-left: 3px solid ${catColors[cat]}; padding-left: 8px">${catLabels[cat]}</span>`
+  ).join('');
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  currentConsultant = null;
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalOverlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ── INIT ───────────────────────────────────────────────────────────────────────
+renderCards();
+</script>
+</body>
+</html>
